@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/wkwiatek/mongodb-blog",
   "dependencies": {
-    "express": "^4.12.2"
+    "express": "^4.12.2",
+    "mongodb": "^1.4.33"
   }
 }
