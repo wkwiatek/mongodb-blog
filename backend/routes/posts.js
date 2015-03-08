@@ -1,12 +1,15 @@
 var express = require('express');
-var router = express.Router();
-var db = require('../mongo').db;
-var postsColl = db.collection('posts');
 
-router.get('/', function(req, res) {
-  postsColl.find().toArray(function(err, result) {
-    res.json(result);
-  });
-});
+function postsHandler(db) {
 
-module.exports = router;
+  var postsColl = db.collection('posts');
+
+  this.getPosts = function(req, res) {
+    postsColl.find().toArray(function(err, result) {
+      res.json(result);
+    });
+  }
+
+}
+
+module.exports = postsHandler;

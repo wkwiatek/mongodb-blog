@@ -1,8 +1,9 @@
 var express = require('express');
-var mongo = require('./mongo');
 var app = express();
+var mongoConnection = require('./mongoConnection');
+var routes = require('./routes');
 
-mongo.init(function(){
-  app.use('/posts', require('./routes/posts'));
+mongoConnection(function(db){
+  routes(app, db);
   app.listen(process.env.PORT || 8000);
 });
