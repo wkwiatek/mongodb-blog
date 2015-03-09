@@ -4,11 +4,12 @@ angular.module('blogApp', [
     'ui.router',
 
     'blogApp.home',
-    'blogApp.posts'
+    'blogApp.posts',
+    'blogApp.posts.create'
   ])
 
   .config(function($urlRouterProvider) {
-    $urlRouterProvider.otherwise('home');
+    $urlRouterProvider.otherwise('/');
   })
 
   .config(function($locationProvider) {

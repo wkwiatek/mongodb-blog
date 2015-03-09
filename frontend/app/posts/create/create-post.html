@@ -1,0 +1,6 @@
+<form ng-submit="vm.submitPost(post)">
+  <input ng-model="post.subject" type="text">
+  <textarea ng-model="post.body" name="content" cols="30" rows="10"></textarea>
+  <input ng-model="vm.tags" type="text">
+  <button type="submit">Create post</button>
+</form>

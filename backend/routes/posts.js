@@ -10,6 +10,12 @@ function postsHandler(db) {
     });
   }
 
+  this.createPost = function(req, res) {
+    postsColl.insert(req.body, function(err, result) {
+      res.json(result);
+    });
+  }
+
 }
 
 module.exports = postsHandler;

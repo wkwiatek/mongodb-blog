@@ -1,3 +1,19 @@
 posts in
 
 <a ui-sref="home">Go back</a>
+<a ui-sref="postsCreate">Create post</a>
+
+
+<table>
+  <thead>
+    <tr>
+      <th>Subject</th>
+      <th>Body</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr ng-repeat="post in vm.posts">
+      <td>{{ post.subject }}</td>
+    </tr>
+  </tbody>
+</table>
