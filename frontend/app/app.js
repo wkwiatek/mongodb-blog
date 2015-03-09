@@ -5,7 +5,8 @@ angular.module('blogApp', [
 
     'blogApp.home',
     'blogApp.posts',
-    'blogApp.posts.create'
+    'blogApp.posts.create',
+    'blogApp.posts.post'
   ])
 
   .config(function($urlRouterProvider) {
