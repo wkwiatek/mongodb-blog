@@ -9,6 +9,8 @@ function routes(app, db) {
   app.post('/posts', postsHandler.createPost);
   app.put('/posts/:id', postsHandler.updatePost);
 
+  app.get('/tags', postsHandler.getTags);
+
 }
 
 module.exports = routes;

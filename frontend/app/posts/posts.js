@@ -14,12 +14,18 @@ angular.module('blogApp.posts', ['ui.router'])
             return $http.get('http://localhost:8000/posts').then(function(posts) {
               return posts.data;
             });
+          },
+          tags: function($http) {
+            return $http.get('http://localhost:8000/tags').then(function(tags) {
+              return tags.data;
+            });
           }
         }
       });
   })
 
-  .controller('postsCtrl', function(posts) {
+  .controller('postsCtrl', function(posts, tags) {
     var vm = this;
     vm.posts = posts;
+    vm.tags = tags;
   });
