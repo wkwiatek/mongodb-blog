@@ -5,7 +5,7 @@ angular.module('blogApp', [
 
     'blogApp.home',
     'blogApp.posts',
-    'blogApp.posts.create',
+    'blogApp.posts.upsert',
     'blogApp.posts.post'
 
   ])

@@ -1,7 +1,7 @@
 posts in
 
 <a ui-sref="home">Go back</a>
-<a ui-sref="postsCreate">Create post</a>
+<a ui-sref="postsUpsert">Create post</a>
 
 <span ng-repeat="tag in vm.tags">{{ tag._id }}</span>
 
@@ -17,7 +17,7 @@ posts in
     <tr ng-repeat="post in vm.posts">
       <td><a ui-sref="post({id: post._id})">{{ post.subject }}</a></td>
       <td>{{ post.body }}</td>
-      <td><a ui-sref="postsCreate({id: post._id})">Edit</a></td>
+      <td><a ui-sref="postsUpsert({id: post._id})">Edit</a></td>
     </tr>
   </tbody>
 </table>
