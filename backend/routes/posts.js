@@ -23,6 +23,12 @@ function postsHandler(db) {
     });
   }
 
+  this.updatePost = function(req, res) {
+    postsColl.update({ _id: new ObjectId(req.params.id) }, req.body, function(err, result) {
+      res.json(result);
+    });
+  }
+
 }
 
 module.exports = postsHandler;

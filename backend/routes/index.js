@@ -7,6 +7,7 @@ function routes(app, db) {
   app.get('/posts', postsHandler.getPosts);
   app.get('/posts/:id', postsHandler.getPost);
   app.post('/posts', postsHandler.createPost);
+  app.put('/posts/:id', postsHandler.updatePost);
 
 }
 

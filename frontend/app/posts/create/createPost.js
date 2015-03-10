@@ -5,17 +5,30 @@ angular.module('blogApp.posts.create', ['ui.router'])
   .config(function($stateProvider) {
     $stateProvider
       .state('postsCreate', {
-        url: '/posts/create',
+        url: '/posts/create/:id',
         templateUrl: 'posts/create/create-post.html',
         controller: 'createPostCtrl',
-        controllerAs: 'vm'
+        controllerAs: 'vm',
+        resolve: {
+          post: function($http, $stateParams) {
+            if($stateParams.id) {
+              return $http.get('http://localhost:8000/posts/' + $stateParams.id).then(function(post) {
+                return post.data;
+              });
+            }
+            else {
+              return null;
+            }
+          }
+        }
       })
   })
 
-  .controller('createPostCtrl', function($state, postsService) {
+  .controller('createPostCtrl', function($state, post, postsService) {
     var vm = this;
+    vm.post = post;
+    vm.tags = vm.post ? vm.post.tags.join(',') : '';
     vm.submitPost = function(post) {
-      console.log(post);
       post.tags = vm.tags.split(',');
       postsService.createPost(post).then(function() {
         $state.go('posts');
