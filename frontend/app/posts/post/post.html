@@ -1,3 +1,5 @@
-<h1>{{ vm.subject }}</h1>
+<h1>{{ vm.post.subject }}</h1>
 
-<p>{{ vm.body }}</p>
+<p>{{ vm.post.body }}</p>
+
+<span ng-repeat="tag in vm.post.tags">{{ tag }}</span>
