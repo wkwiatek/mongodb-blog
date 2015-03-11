@@ -7,6 +7,9 @@
 <div ng-repeat="comment in vm.post.comments">
   <p>{{ comment.body }}</p>
   <p>{{ comment.author }}</p>
+
+  <button ng-click="vm.likeComment($index, vm.post._id)">Like {{ comment.likes || 0 }}</button>
+
 </div>
 
 <form ng-submit="vm.submitComment(vm.comment, vm.post._id)">

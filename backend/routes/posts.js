@@ -49,6 +49,18 @@ function postsHandler(db) {
     );
   };
 
+  this.likeComment = function(req, res) {
+    var commentLikesSelector = {};
+    commentLikesSelector['comments.' + req.body.commentIndex + '.likes'] = 1;
+    postsColl.update(
+      { _id: new ObjectId(req.body.postId) },
+      { $inc: commentLikesSelector },
+      function(err, result) {
+        res.json(result);
+      }
+    );
+  };
+
 }
 
 module.exports = postsHandler;

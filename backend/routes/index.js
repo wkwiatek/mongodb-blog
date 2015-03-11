@@ -12,6 +12,7 @@ function routes(app, db) {
   app.get('/tags', postsHandler.getTags);
 
   app.post('/comment', postsHandler.createComment);
+  app.post('/comment/like', postsHandler.likeComment);
 
 }
 

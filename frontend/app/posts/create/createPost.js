@@ -30,6 +30,7 @@ angular.module('blogApp.posts.upsert', ['ui.router'])
     vm.tags = vm.post ? vm.post.tags.join(',') : '';
     vm.submitPost = function(post) {
       post.tags = vm.tags.split(',');
+      console.log(postsService);
       postsService.submitPost(post).then(function() {
         $state.go('posts');
       });
