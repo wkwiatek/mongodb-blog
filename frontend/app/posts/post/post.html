@@ -3,3 +3,14 @@
 <p>{{ vm.post.body }}</p>
 
 <span ng-repeat="tag in vm.post.tags">{{ tag }}</span>
+
+<div ng-repeat="comment in vm.post.comments">
+  <p>{{ comment.body }}</p>
+  <p>{{ comment.author }}</p>
+</div>
+
+<form ng-submit="vm.submitComment(vm.comment, vm.post._id)">
+  <input ng-model="vm.comment.author" type="text">
+  <textarea ng-model="vm.comment.body" cols="30" rows="10"></textarea>
+  <button type="submit">Submit comment</button>
+</form>

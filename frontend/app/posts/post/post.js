@@ -19,7 +19,24 @@ angular.module('blogApp.posts.post', ['ui.router'])
       });
   })
 
-  .controller('postCtrl', function(post) {
+  .controller('postCtrl', function($state, post, postsService) {
     var vm = this;
     vm.post = post;
+
+    vm.submitComment = function(comment, postId) {
+      postsService.submitComment({
+        comment: comment,
+        postId: postId
+      }).then(function() {
+        $state.go('post', { id: vm.post._id }, { reload: true });
+      });
+    };
+  })
+
+  .service('postsService', function($http) {
+    return {
+      submitComment: function(comment) {
+        return $http.post('http://localhost:8000/comment', comment);
+      }
+    };
   });

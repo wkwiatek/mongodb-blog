@@ -39,6 +39,16 @@ function postsHandler(db) {
     });
   };
 
+  this.createComment = function(req, res) {
+    postsColl.update(
+      { _id: new ObjectId(req.body.postId) },
+      { $push: { comments: req.body.comment } },
+      function(err, result) {
+        res.json(result);
+      }
+    );
+  };
+
 }
 
 module.exports = postsHandler;
