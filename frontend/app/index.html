@@ -8,7 +8,13 @@
 </head>
 <body>
 <div class="container">
-    <div ui-view></div>
+  <nav class="navbar navbar-default">
+    <ul class="nav navbar-nav">
+      <li><a ui-sref="posts" ui-sref-opts="{reload: true}">Posts</a></li>
+      <li><a ui-sref="postsUpsert">Create new post</a></li>
+    </ul>
+  </nav>
+  <div ui-view></div>
 </div>
 
 <script src="//cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.0-beta.4/angular-1.4.0-beta.5/angular.min.js"></script>

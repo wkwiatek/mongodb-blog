@@ -10,6 +10,7 @@ function routes(app, db) {
   app.put('/posts/:id', postsHandler.updatePost);
 
   app.get('/tags', postsHandler.getTags);
+  app.get('/tags/:tag', postsHandler.getPostsByTag);
 
   app.post('/comment', postsHandler.createComment);
   app.post('/comment/like', postsHandler.likeComment);

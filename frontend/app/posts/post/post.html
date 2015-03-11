@@ -2,18 +2,39 @@
 
 <p>{{ vm.post.body }}</p>
 
-<span ng-repeat="tag in vm.post.tags">{{ tag }}</span>
+<!-- <div class="container">
+  <span>Tags:</span>
+  <ul class="nav nav-pills">
+    <li ng-repeat="tag in vm.post.tags">
+      <a>{{ tag }}</a>
+    </li>
+  </ul>
+</div> -->
+
+<h2>Comments ({{ vm.post.comments.length || 0 }}) </h2>
 
 <div ng-repeat="comment in vm.post.comments">
-  <p>{{ comment.body }}</p>
-  <p>{{ comment.author }}</p>
+  <blockquote>
+    <p>{{ comment.body }}</p>
+    <footer>{{ comment.author }}></footer>
+    <br>
+    <button ng-click="vm.likeComment($index, vm.post._id)" class="btn btn-small btn-info">Like {{ comment.likes || 0 }}</button>
+  </blockquote>
 
-  <button ng-click="vm.likeComment($index, vm.post._id)">Like {{ comment.likes || 0 }}</button>
 
 </div>
 
-<form ng-submit="vm.submitComment(vm.comment, vm.post._id)">
-  <input ng-model="vm.comment.author" type="text">
-  <textarea ng-model="vm.comment.body" cols="30" rows="10"></textarea>
-  <button type="submit">Submit comment</button>
-</form>
+<h3>Add new comment</h3>
+<div class="row">
+  <div class="col-md-4">
+    <form ng-submit="vm.submitComment(vm.comment, vm.post._id)">
+      <div class="form-group">
+        <input ng-model="vm.comment.author" class="form-control" placeholder="Author" type="text">
+      </div>
+      <div class="form-group">
+        <textarea ng-model="vm.comment.body" class="form-control" placeholder="Body" cols="30" rows="10"></textarea>
+      </div>
+      <button type="submit" class="btn btn-primary btn-block">Submit comment</button>
+    </form>
+  </div>
+</div>

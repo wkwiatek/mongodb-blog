@@ -12,7 +12,13 @@ function postsHandler(db) {
   };
 
   this.getPosts = function(req, res) {
-    postsColl.find().toArray(function(err, result) {
+    postsColl.find({}, { sort: [ 'date', 'desc'] }).toArray(function(err, result) {
+      res.json(result);
+    });
+  };
+
+  this.getPostsByTag = function(req, res) {
+    postsColl.find({ tags: req.params.tag }, { sort: [ 'date', 'desc'] }).toArray(function(err, result) {
       res.json(result);
     });
   };
@@ -33,7 +39,7 @@ function postsHandler(db) {
     postsColl.aggregate([
       { $project: { tags: 1 } },
       { $unwind: '$tags' },
-      { $group: { _id: '$tags'} }
+      { $group: { _id: '$tags', count: { $sum: 1 } } }
     ], function(err, result) {
       res.json(result);
     });

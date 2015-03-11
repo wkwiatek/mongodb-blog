@@ -24,8 +24,21 @@ angular.module('blogApp.posts', ['ui.router'])
       });
   })
 
-  .controller('postsCtrl', function(posts, tags) {
+  .controller('postsCtrl', function(posts, tags, tagService) {
     var vm = this;
     vm.posts = posts;
     vm.tags = tags;
+    vm.filterByTag = function(tag) {
+      tagService.getPostsByTag(tag).then(function(posts) {
+        vm.posts = posts.data;
+      });
+    }
+  })
+
+  .service('tagService', function($http) {
+    return {
+      getPostsByTag: function(tag) {
+        return $http.get('http://localhost:8000/tags/' + tag);
+      }
+    };
   });

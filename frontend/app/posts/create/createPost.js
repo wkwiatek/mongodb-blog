@@ -26,21 +26,35 @@ angular.module('blogApp.posts.upsert', ['ui.router'])
 
   .controller('upsertPostCtrl', function($state, post, postsService) {
     var vm = this;
+    var isEdit = post ? true : false;
+    console.log(isEdit);
     vm.post = post;
     vm.tags = vm.post ? vm.post.tags.join(',') : '';
     vm.submitPost = function(post) {
       post.tags = vm.tags.split(',');
-      console.log(postsService);
-      postsService.submitPost(post).then(function() {
-        $state.go('posts');
-      });
+      if (isEdit) {
+        postsService.updatePost(post).then(function() {
+          $state.go('posts');
+        });
+      }
+      else {
+        post.date = new Date();
+        postsService.createPost(post).then(function() {
+          $state.go('posts');
+        });
+      }
     };
   })
 
   .service('postsService', function($http) {
     return {
-      submitPost: function(post) {
+      createPost: function(post) {
         return $http.post('http://localhost:8000/posts', post);
+      },
+      updatePost: function(post) {
+        var id = post._id;
+        delete post._id;
+        return $http.put('http://localhost:8000/posts/' + id, post);
       }
     };
   });

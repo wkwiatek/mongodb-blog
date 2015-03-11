@@ -1,23 +1,24 @@
-posts in
 
-<a ui-sref="home">Go back</a>
-<a ui-sref="postsUpsert">Create post</a>
+<div class="container">
+  <span>Tags:</span>
+  <ul class="nav nav-pills">
+    <li ng-repeat="tag in vm.tags">
+      <a ng-click="vm.filterByTag(tag._id)">{{ tag._id }} <span class="badge">{{ tag.count }}</span></a>
+    </li>
+  </ul>
+</div>
 
-<span ng-repeat="tag in vm.tags">{{ tag._id }}</span>
-
-<table>
-  <thead>
-    <tr>
-      <th>Subject</th>
-      <th>Body</th>
-      <th>Actions</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr ng-repeat="post in vm.posts">
-      <td><a ui-sref="post({id: post._id})">{{ post.subject }}</a></td>
-      <td>{{ post.body }}</td>
-      <td><a ui-sref="postsUpsert({id: post._id})">Edit</a></td>
-    </tr>
-  </tbody>
-</table>
+<div ng-repeat="post in vm.posts" class="panel panel-default">
+  <div class="panel-heading">
+    <h3 class="panel-title">
+      <a ui-sref="post({id: post._id})">{{ post.subject }}</a>
+      <span class="small">{{ post.date | date:'dd/MM/yyyy hh:mm a' }}</span>
+    </h3>
+  </div>
+  <div class="panel-body">
+    {{ post.body }}
+  </div>
+  <div class="panel-footer">
+    <a ui-sref="postsUpsert({id: post._id})">Edit</a>
+  </div>
+</div>
